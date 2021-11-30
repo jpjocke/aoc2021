@@ -1,6 +1,6 @@
 import unittest
 
-from util.FileReader import FileReader
+from util.file_reader import FileReader
 
 
 class TestStringMethods(unittest.TestCase):
