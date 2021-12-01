@@ -12,8 +12,4 @@ class FileReader:
         return self.read(path).splitlines()
 
     def read_as_int_lines(self, path: str) -> List[int]:
-        strings = self.read_as_str_lines(path)
-        data = []
-        for line in strings:
-            data.append(int(line))
-        return data
+        return [*map(int, self.read_as_str_lines(path))]

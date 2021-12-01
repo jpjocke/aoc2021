@@ -1,9 +1,9 @@
 import unittest
 
-from util.file_reader import FileReader
+from file_reader import FileReader
 
 
-class TestStringMethods(unittest.TestCase):
+class TestUtil(unittest.TestCase):
 
     def test_upper(self):
         self.assertEqual('foo'.upper(), 'FOO')
@@ -21,7 +21,7 @@ class TestStringMethods(unittest.TestCase):
 
     def test_fileReader(self):
         fr = FileReader()
-        self.assertEqual(fr.read("../data/test1.txt"), "hej")
+        self.assertEqual(fr.read("../data/file_reader_test1.txt"), "hej")
 
 
 if __name__ == '__main__':

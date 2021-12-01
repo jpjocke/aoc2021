@@ -1,10 +1,10 @@
-from util.file_reader import FileReader
+from file_reader import FileReader
 
 print(__name__)
 
 fr = FileReader()
 
-print(fr.read("data/test1.txt"))
+print(fr.read("data/file_reader_test1.txt"))
 
 data = fr.read_as_str_lines("data/test2.txt")
 

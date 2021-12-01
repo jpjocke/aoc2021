@@ -1,7 +1,7 @@
 import unittest
 
-from depth_measure import DepthMeasure
-from util.file_reader import FileReader
+from src.day1.depth_measure import DepthMeasure
+from file_reader import FileReader
 
 
 class TestDayOne(unittest.TestCase):
