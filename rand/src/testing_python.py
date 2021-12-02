@@ -4,14 +4,7 @@ print(__name__)
 
 fr = FileReader()
 
-print(fr.read("data/file_reader_test1.txt"))
-
-data = fr.read_as_str_lines("data/test2.txt")
-
-for line in data:
-    print('line: ' + line)
-
-data2 = fr.read_as_int_lines("data/2020_test1.txt")
+data2 = fr.read_as_int_lines("../data/2020_test1.txt")
 total = 0
 for num in data2:
     print('num: ' + str(num))
@@ -35,3 +28,20 @@ for i, val_i in enumerate(data2):
             break
         if i == y:
             break
+
+# day1 solve by other
+d = [*map(int, open("../../data/day1_in.txt", 'r'))]
+p1 = sum(map(int.__gt__, d[1:], d))
+print("problem 1: " + str(p1))
+
+# test reference list and lambdas
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print('h: ' + str(a[3:]))
+
+tsr = ['1', '2', '3', '4']
+print(*map(int, tsr))
+print(tsr)
+print(*tsr)
+
+tsr2 = map(int, tsr)
+print(*map(lambda x: x * x, tsr2))
