@@ -13,4 +13,4 @@ for c in commands:
 # problem 2 changed functionality, cant do problem 1
 print('problem 2: ' + str(submarine.result()))
 
-# difficulty easy
+# difficulty 1

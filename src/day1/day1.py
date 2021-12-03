@@ -12,4 +12,4 @@ spread = dm.spread_list(data, 3)
 two = dm.count(spread)
 print("problem 2: " + str(two))
 
-# difficulty: easy
+# difficulty: 1
