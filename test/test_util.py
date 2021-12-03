@@ -8,15 +8,18 @@ class TestUtil(unittest.TestCase):
 
     def test_fileReader(self):
         fr = FileReader()
-        self.assertEqual(fr.read("../data/file_reader_test1.txt"), "hej")
+        self.assertEqual("hej", fr.read("../data/file_reader_test1.txt"))
 
     def test_binary_decimal(self):
         binary = Binary('10110')
-        self.assertEqual(binary.as_decimal(), 22)
-        binary.invert()
-        self.assertEqual(binary.value, '01001')
+        self.assertEqual(22, binary.as_decimal())
         binary2 = Binary('01001')
-        self.assertEqual(binary2.as_decimal(), 9)
+        self.assertEqual(9, binary2.as_decimal())
+
+    def test_binary_invert(self):
+        binary = Binary('10110')
+        binary.invert()
+        self.assertEqual('01001', binary.value)
 
 
 if __name__ == '__main__':

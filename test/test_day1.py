@@ -12,7 +12,7 @@ class TestDayOne(unittest.TestCase):
 
         dm = DepthMeasure()
         one = dm.count(data)
-        self.assertEqual(one, 7)
+        self.assertEqual(7, one)
 
     def test_problem_2(self):
         fr = FileReader()
@@ -21,7 +21,7 @@ class TestDayOne(unittest.TestCase):
         dm = DepthMeasure()
         spread = dm.spread_list(data, 3)
         two = dm.count(spread)
-        self.assertEqual(two, 5)
+        self.assertEqual(5, two)
 
 
 if __name__ == '__main__':

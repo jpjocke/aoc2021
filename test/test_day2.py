@@ -1,7 +1,7 @@
 import unittest
 
-from day2.sub_command import SubCommand
-from day2.submarine import Submarine
+from src.day2.sub_command import SubCommand
+from src.day2.submarine import Submarine
 from file_reader import FileReader
 
 
@@ -26,7 +26,7 @@ class TestDayTwo(unittest.TestCase):
         submarine = Submarine()
         for c in commands:
             submarine.run_command(c)
-        self.assertEqual(submarine.result(), 900)
+        self.assertEqual(900, submarine.result())
 
 
 if __name__ == '__main__':
