@@ -4,63 +4,63 @@ from src.day4.bingo_number import BingoNumber
 
 
 class BingoBoard:
-    rows: List[List[BingoNumber]]
+    __rows: List[List[BingoNumber]]
     bingo: bool
 
     def __init__(self):
-        self.rows = []
-        self.bingo = 0
+        self.__rows = []
+        self.bingo = False
 
     def add_row(self, row: List[BingoNumber]):
-        self.rows.append(row)
+        self.__rows.append(row)
 
     def mark_number(self, number: int):
-        marked = 0
-        for row in self.rows:
+        found = False
+        for row in self.__rows:
             for num in row:
                 if num.number == number:
                     num.mark()
-                    marked = 1
+                    found = True
                     break
-            if marked == 1:
+            if found:
                 break
         self.__check_bingo()
 
     def sum_unmarked(self) -> int:
         total = 0
-        for row in self.rows:
+        for row in self.__rows:
             for num in row:
-                if num.marked == 0:
+                if not num.marked:
                     total += num.number
         return total
 
     def __check_bingo(self):
-        for i in range(len(self.rows)):
+        for i in range(len(self.__rows)):
             if self.__check_row_bingo(i):
-                self.bingo = 1
+                self.bingo = True
                 break
 
-        for i in range(len(self.rows[0])):
+        for i in range(len(self.__rows[0])):
             if self.__check_column_bingo(i):
-                self.bingo = 1
+                self.bingo = True
                 break
 
     def __check_row_bingo(self, index: int) -> bool:
-        for num in self.rows[index]:
-            if num.marked == 0:
-                return 0
-        return 1
+        for num in self.__rows[index]:
+            if not num.marked:
+                return False
+        return True
 
     def __check_column_bingo(self, index: int) -> bool:
-        for row in self.rows:
-            if row[index].marked == 0:
-                return 0
-        return 1
+        for row in self.__rows:
+            if not row[index].marked:
+                return False
+        return True
 
     def __str__(self):
-        ret = ''
-        for row in self.rows:
+        string_builder = ''
+        for row in self.__rows:
             for num in row:
-                ret += num.__str__() + ' '
-            ret += '\n'
-        return ret
+                string_builder += num.__str__() + ' '
+            string_builder += '\n'
+        return string_builder

@@ -4,13 +4,13 @@ class BingoNumber:
 
     def __init__(self, number: int):
         self.number = number
-        self.marked = 0
+        self.marked = False
 
     def mark(self):
-        self.marked = 1
+        self.marked = True
 
     def __str__(self):
         m = '-o-'
-        if self.marked == 1:
+        if self.marked:
             m = '-X-'
         return str(self.number) + m

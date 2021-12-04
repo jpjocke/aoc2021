@@ -5,8 +5,10 @@ fr = FileReader()
 data = fr.read_as_str_lines("../../data/day4_in.txt")
 
 controller = Controller(data)
-controller.run_numbers()
-print(str(controller.bingo_board.sum_unmarked()))
-print(str(controller.bingo_board.sum_unmarked() * controller.last_number))
+result = controller.run_numbers(1)
+print('problem 1: ' + str(result.get_result()))
 
-# difficulty ?
+controller = Controller(data)
+result = controller.run_numbers(0)
+print('problem 2: ' + str(result.get_result()))
+# difficulty 2

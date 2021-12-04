@@ -10,18 +10,15 @@ class TestDayThree(unittest.TestCase):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day4_test_in.txt")
         controller = Controller(data)
-        controller.run_numbers()
-        print(str(controller.bingo_board.sum_unmarked()))
-        print(str(controller.bingo_board.sum_unmarked() * controller.last_number))
-        # print(*controller.numbers)
-        # for b in controller.bingo_boards:
-        #    print(b)
-        self.assertEqual(controller.bingo_board.sum_unmarked() * controller.last_number, 4512)
+        result = controller.run_numbers(1)
+        self.assertEqual(result.get_result(), 4512)
 
     def test_problem_2(self):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day4_test_in.txt")
-        self.assertEqual(230, 230)
+        controller = Controller(data)
+        result = controller.run_numbers(0)
+        self.assertEqual(result.get_result(), 1924)
 
 
 if __name__ == '__main__':
