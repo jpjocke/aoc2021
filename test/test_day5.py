@@ -1,8 +1,8 @@
 import unittest
 
-from src.day5.line_mapper import LineMapper
-from src.day5.line_factory import to_lines, only_horizontal_or_vertical
 from file_reader import FileReader
+from src.day5.line_factory import to_lines, only_horizontal_or_vertical
+from src.day5.line_mapper import LineMapper
 
 
 class TestDayThree(unittest.TestCase):
