@@ -6,6 +6,10 @@ fr = FileReader()
 data = fr.read_as_str_lines("../../data/day9_in.txt")
 height_map = HeightMap(parse_map(data))
 height_map.analyze()
+print(height_map)
 # 1557 too high
 print('problem 1: ' + str(height_map.sum_lows()))
-# difficulty ?
+
+print('problem 2: ' + str(height_map.sum_basins()))
+
+# difficulty 2

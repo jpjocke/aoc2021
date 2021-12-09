@@ -21,7 +21,8 @@ class TestDayThree(unittest.TestCase):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day9_test_in.txt")
         height_map = HeightMap(parse_map(data))
-        self.assertEqual(1134, 1134)
+        height_map.analyze()
+        self.assertEqual(height_map.sum_basins(), 1134)
 
 
 if __name__ == '__main__':
