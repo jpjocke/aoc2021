@@ -11,10 +11,7 @@ class TestDayThree(unittest.TestCase):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day9_test_in.txt")
         height_map = HeightMap(parse_map(data))
-        print(height_map)
         height_map.analyze()
-        print('--')
-        print(height_map)
         self.assertEqual(height_map.sum_lows(), 15)
 
     def test_problem_2(self):
