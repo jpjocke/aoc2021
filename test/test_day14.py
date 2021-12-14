@@ -16,8 +16,8 @@ class TestDayThree(unittest.TestCase):
     def test_problem_2(self):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day14_test_in.txt")
-        #polymer = parse_polymer(data)
-        #polymer.calculate(40)
+        polymer = parse_polymer(data)
+        polymer.calculate(40)
         self.assertEqual(polymer.quantity(), 2188189693529)
 
 

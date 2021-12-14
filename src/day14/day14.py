@@ -9,3 +9,4 @@ print('problem 1: ' + str(polymer.quantity()))
 polymer2 = parse_polymer(data)
 polymer2.calculate(40)
 print('problem 2: ' + str(polymer2.quantity()))
+# difficulty 4
