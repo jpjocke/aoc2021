@@ -7,5 +7,6 @@ packages = parse_hex_package(data[0])
 p = packages[0]
 
 print('problem 1:  ' + str(p.version_value()))
+print('problem 2:  ' + str(p.calculate()))
 
 # difficulty ?

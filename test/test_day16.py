@@ -53,5 +53,47 @@ class TestDay16(unittest.TestCase):
         p = packages[0]
         self.assertEqual(p.version_value(), 31)
 
+    def test_problem_2a(self):
+        data = 'C200B40A82'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 3)
+
+    def test_problem_2b(self):
+        data = '04005AC33890'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 54)
+
+    def test_problem_2c(self):
+        data = '880086C3E88112'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 7)
+
+    def test_problem_2d(self):
+        data = 'CE00C43D881120'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 9)
+
+    def test_problem_2e(self):
+        data = 'D8005AC2A8F0'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 1)
+
+    def test_problem_2f(self):
+        data = 'F600BC2D8F'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 0)
+
+    def test_problem_2g(self):
+        data = '9C005AC2F8F0'
+        packages = parse_hex_package(data)
+        p = packages[0]
+        self.assertEqual(p.calculate(), 0)
+
 if __name__ == '__main__':
     unittest.main()

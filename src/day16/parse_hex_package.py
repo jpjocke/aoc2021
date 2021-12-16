@@ -22,17 +22,13 @@ def __parse_packages(data: str) -> List[Package]:
 
 
 def __parse_package(data: str) -> (Package, int):
-    print('parsing: ' + data)
     package = Package()
     package.package_version = Binary(data[0:3])
     package.package_type_id = Binary(data[3:6])
-    print(package)
     index = 6
     if package.is_literal():
-        print('literal')
         index = __parse_literal_value(data, index, package)
     else:
-        print('operator: ' + data[6])
         if data[6] == '0':
             index = 7 + 15
             length = Binary(data[7:index])
