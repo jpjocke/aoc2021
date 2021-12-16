@@ -21,5 +21,8 @@ class Binary:
             multiplier *= 2
         return value
 
+    def copy(self) -> "Binary":
+        return Binary(self.value)
+
     def __str__(self):
         return self.value
