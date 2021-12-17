@@ -11,10 +11,11 @@ class TestDayThree(unittest.TestCase):
         y, highest = area.find_highest(0, 10)
         self.assertEqual(y, 9)
         self.assertEqual(highest, 45)
-        self.assertEqual(area.find_x(), 7)
 
     def test_problem_2(self):
-        self.assertEqual(1, 1)
+        area = Area(Point(20, -5), Point(30, -10))
+        amount = area.find_trajectory_count(2, 40, -10, 40)
+        self.assertEqual(amount, 112)
 
 
 if __name__ == '__main__':

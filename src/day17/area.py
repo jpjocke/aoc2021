@@ -1,3 +1,5 @@
+from typing import List
+
 from point import Point
 
 
@@ -13,46 +15,75 @@ class Area:
         largest = 0
         highest = 0
         for y in range(start_y, max_y):
-            hit, h = self.__sim_y(y)
-            if hit:
+            hits, h = self.__sim_y(y)
+            if len(hits) > 0:
                 largest = y
                 highest = h
         return largest, highest
 
-    def find_x(self):
-        for x in range(100):
-            if self.__sim_x(x):
-                return x
+    def find_trajectory_count(self, x_s: int, x_e: int, y_s: int, y_e: int) -> int:
+        # find starting trajectory for x and y separately. also count all steps that trajectory is within the goal
+        # combine all trajectories with the same amount of steps.
+        ys = self.find_y(y_s, y_e)
+        xs = self.find_x(x_s, x_e)
+        trajectories = set([])
+        for x, step_x in xs:
+            for y, step_y in ys:
+                if step_x == step_y:
+                    trajectories.add(Point(x, y))
+        return len(trajectories)
 
-    def __sim_y(self, velocity_y: int) -> (bool, int):
+    def find_y(self, start_y, max_y) -> List[object]:
+        all_hits = []
+        for y in range(start_y, max_y):
+            hits, h = self.__sim_y(y)
+            if len(hits) > 0:
+                for step in hits:
+                    all_hits.append((y, step))
+        return all_hits
+
+    def find_x(self, start_x, max_x) -> List[object]:
+        all_hits = []
+        for x in range(start_x, max_x):
+            hits = self.__sim_x(x)
+            if len(hits) > 0:
+                for step in hits:
+                    all_hits.append((x, step))
+        return all_hits
+
+    def __sim_y(self, velocity_y: int) -> (List[int], int):
         y = 0
-        hit = False
         highest = 0
+        steps = 0
+        hits = []
         while True:
             y += velocity_y
+            steps += 1
             if y > highest:
                 highest = y
             if y < self.end.y:
                 break
-            if y < self.start.y:
-                hit = True
-                break
+            if y <= self.start.y:
+                hits.append(steps)
             velocity_y -= 1
-        return hit, highest
+        return hits, highest
 
-    def __sim_x(self, velocity_x: int) -> bool:
+    def __sim_x(self, velocity_x: int) -> List[int]:
         x = 0
-        hit = False
-        while x < self.end.x:
-            if x > self.start.x:
-                hit = True
+        steps = 0
+        hits = []
+        while True:
+            x += velocity_x
+            steps += 1
+            if x > self.end.x:
                 break
+            if x >= self.start.x:
+                hits.append(steps)
             if velocity_x > 0:
                 velocity_x -= 1
             if velocity_x < 0:
                 velocity_x += 1
 
-            if velocity_x == 0:
+            if steps > 250:  # magic number tested with my input
                 break
-            x += velocity_x
-        return hit
+        return hits
