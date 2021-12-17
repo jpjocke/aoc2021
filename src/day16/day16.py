@@ -9,4 +9,4 @@ p = packages[0]
 print('problem 1:  ' + str(p.version_value()))
 print('problem 2:  ' + str(p.calculate()))
 
-# difficulty ?
+# difficulty 3
