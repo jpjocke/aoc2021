@@ -32,6 +32,9 @@ def __parse_one(data: str) -> Snailfish:
                 break
         sf.left = __parse_one(pair_raw[0:end_left])
     else:
+        # support 2 digits only
+        if pair_raw[1] != ',':
+            start += pair_raw[1]
         sf.left = int(start)
 
     if end == __END:  # right is pair
@@ -47,5 +50,7 @@ def __parse_one(data: str) -> Snailfish:
                 break
         sf.right = __parse_one(pair_raw[start_right::])
     else:
+        if pair_raw[len(pair_raw) - 2] != ',':
+            end = pair_raw[len(pair_raw) - 2] + end
         sf.right = int(end)
     return sf

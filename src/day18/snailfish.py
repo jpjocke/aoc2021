@@ -1,3 +1,4 @@
+from math import floor, ceil
 from typing import Union
 
 
@@ -37,13 +38,26 @@ class Snailfish:
             return True
         return False
 
+    def can_split(self) -> bool:
+        if self.is_left_fish():
+            if self.left.can_split():
+                return True
+        else:
+            if self.left >= 10:
+                return True
+        if self.is_right_fish():
+            if self.right.can_split():
+                return True
+        else:
+            if self.right >= 10:
+                return True
+
     def explode(self) -> (int, str):  # returns (rest, > = should go to right | < = should go left)
         if self.__depth_left() >= self.__depth_right():
             # left
             if self.__depth_left() > 1:
                 rest, a = self.left.explode()
                 if a == '>':
-                    print('increase right: ' + str(rest))
                     if not self.is_right_fish():
                         self.right += rest
                     else:
@@ -60,7 +74,6 @@ class Snailfish:
             if self.__depth_right() > 1:
                 rest, a = self.right.explode()
                 if a == '<':
-                    print('increase left: ' + str(rest))
                     if not self.is_left_fish():
                         self.left += rest
                     else:
@@ -72,6 +85,32 @@ class Snailfish:
                 self.add_left(self.right.left)
                 self.right = 0
                 return rest, '>'
+
+    def split(self):
+        if self.is_left_fish():
+            if self.left.can_split():
+                self.left.split()
+                return
+        else:
+            if self.left >= 10:
+                l = floor(self.left / 2)
+                r = ceil(self.left / 2)
+                self.left = Snailfish()
+                self.left.left = l
+                self.left.right = r
+                return
+        if self.is_right_fish():
+            if self.right.can_split():
+                self.right.split()
+                return
+        else:
+            if self.right >= 10:
+                l = floor(self.right / 2)
+                r = ceil(self.right / 2)
+                self.right = Snailfish()
+                self.right.left = l
+                self.right.right = r
+                return
 
     def add_right(self, value: int):
         if self.is_right_fish():
