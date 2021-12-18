@@ -1,9 +1,35 @@
+import copy
 from typing import List
 
 from src.day18.snailfish import Snailfish
 
 
-# TODO test
+def calculate_largest_for_two(sfs: List[Snailfish]) -> int:
+    largest = 0
+    s1 = copy.deepcopy(sfs)
+    s2 = copy.deepcopy(sfs)
+    for i, a in enumerate(s1):
+        for j, b in enumerate(s2):
+            if i == j:
+                continue
+            ab = Snailfish()
+            ab.left = copy.deepcopy(a)
+            ab.right = copy.deepcopy(b)
+            ab = calculate_snailfish(ab)
+            m = ab.magnitude()
+            if m > largest:
+                largest = m
+            ba = Snailfish()
+            ba.left = copy.deepcopy(b)
+            ba.right = copy.deepcopy(a)
+            ba = calculate_snailfish(ba)
+            m1 = ba.magnitude()
+            if m1 > largest:
+                largest = m1
+
+    return largest
+
+
 def calculate_snailfish_multiple(sfs: List[Snailfish], debug: bool = False) -> Snailfish:
     current = calculate_snailfish(sfs[0])
     for i, sf in enumerate(sfs):

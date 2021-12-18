@@ -1,6 +1,6 @@
 import unittest
 
-from day18.snailfish_math import calculate_snailfish, calculate_snailfish_multiple
+from day18.snailfish_math import calculate_snailfish, calculate_snailfish_multiple, calculate_largest_for_two
 from day18.snailfish_parser import parse_snailfish
 from file_reader import FileReader
 
@@ -131,6 +131,12 @@ class TestDay18(unittest.TestCase):
         self.assertEqual(sf.__str__(), '[[[[6,6],[7,6]],[[7,7],[7,0]]],[[[7,7],[7,7]],[[7,8],[9,9]]]]')
         self.assertEqual(sf.magnitude(), 4140)
 
+    def test_problem_2_full(self):
+        fr = FileReader()
+        data = fr.read_as_str_lines("../data/day18a_test_in.txt")
+        sfs = parse_snailfish(data)
+        largest = calculate_largest_for_two(sfs)
+        self.assertEqual(largest, 3993)
 
 if __name__ == '__main__':
     unittest.main()
