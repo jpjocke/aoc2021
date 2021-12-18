@@ -12,6 +12,18 @@ class Snailfish:
     def is_right_fish(self) -> bool:
         return not isinstance(self.right, int)
 
+    def magnitude(self) -> int:
+        total = 0
+        if self.is_left_fish():
+            total += 3 * self.left.magnitude()
+        else:
+            total += 3 * self.left
+        if self.is_right_fish():
+            total += 2 * self.right.magnitude()
+        else:
+            total += 2 * self.right
+        return total
+
     def depth(self) -> int:
         depth_l = 0
         depth_r = 0
@@ -61,12 +73,15 @@ class Snailfish:
                     if not self.is_right_fish():
                         self.right += rest
                     else:
-                        self.right.add_left(rest)
+                        self.right.__add_left(rest)
                     rest = 0
                 return rest, a
             else:
                 rest = self.left.left
-                self.add_right(self.left.right)
+                if not self.is_right_fish():
+                    self.right += self.left.right
+                else:
+                    self.right.__add_left(self.left.right)
                 self.left = 0
                 return rest, '<'  # do something
         else:
@@ -77,12 +92,15 @@ class Snailfish:
                     if not self.is_left_fish():
                         self.left += rest
                     else:
-                        self.left.add_right(rest)
+                        self.left.__add_right(rest)
                     rest = 0
                 return rest, a
             else:
                 rest = self.right.right
-                self.add_left(self.right.left)
+                if not self.is_left_fish():
+                    self.left += self.right.left
+                else:
+                    self.left.__add_right()
                 self.right = 0
                 return rest, '>'
 
@@ -112,15 +130,15 @@ class Snailfish:
                 self.right.right = r
                 return
 
-    def add_right(self, value: int):
+    def __add_right(self, value: int):
         if self.is_right_fish():
-            self.right.add_right(value)
+            self.right.__add_right(value)
         else:
             self.right += value
 
-    def add_left(self, value: int):
+    def __add_left(self, value: int):
         if self.is_left_fish():
-            self.left.add_left(value)
+            self.left.__add_left(value)
         else:
             self.left += value
 

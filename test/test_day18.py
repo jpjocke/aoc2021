@@ -88,6 +88,12 @@ class TestDay18(unittest.TestCase):
         sf = calculate_snailfish(sf)
         self.assertEqual(sf.__str__(), '[[[[0,7],4],[[7,8],[6,0]]],[8,1]]')
 
+    def test_explode(self):
+        data = ['[[[[4,0],[5,0]],[[[4,5],[2,6]],[9,5]]],[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]]']
+        sf = parse_snailfish(data)[0]
+        sf.explode()
+        self.assertEqual(sf.__str__(), '[[[[4,0],[5,4]],[[0,[7,6]],[9,5]]],[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]]')
+
     def test_problem_1_multiple_lines(self):
         data = ['[[[[4,3],4],4],[7,[[8,4],9]]]', '[1,1]']
         sfs = parse_snailfish(data)
@@ -104,8 +110,26 @@ class TestDay18(unittest.TestCase):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day18_test_in.txt")
         sfs = parse_snailfish(data)
-        sf = calculate_snailfish_multiple(sfs, True)
+        sf = calculate_snailfish_multiple(sfs, False)
         self.assertEqual(sf.__str__(), '[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]')
+
+    def test_problem_1_magnitude(self):
+        data = ['[[1,2],[[3,4],5]]']
+        sf = parse_snailfish(data)[0]
+        self.assertEqual(sf.magnitude(), 143)
+
+    def test_problem_1a_magnitude(self):
+        data = ['[[[[8,7],[7,7]],[[8,6],[7,7]]],[[[0,7],[6,6]],[8,7]]]']
+        sf = parse_snailfish(data)[0]
+        self.assertEqual(sf.magnitude(), 3488)
+
+    def test_problem_1_full(self):
+        fr = FileReader()
+        data = fr.read_as_str_lines("../data/day18a_test_in.txt")
+        sfs = parse_snailfish(data)
+        sf = calculate_snailfish_multiple(sfs, False)
+        self.assertEqual(sf.__str__(), '[[[[6,6],[7,6]],[[7,7],[7,0]]],[[[7,7],[7,7]],[[7,8],[9,9]]]]')
+        self.assertEqual(sf.magnitude(), 4140)
 
 
 if __name__ == '__main__':
