@@ -39,16 +39,15 @@ class Scanner:
             self.b_permutations[i].append(mut)
 
     def __mutate_xyz(self, x: int, y: int, z: int) -> List[Point3D]:
-        # this results in 8 too many...should be 24 instead of 48
         mutated = []
         mutated.append(Point3D(x, y, z))
-        mutated.append(Point3D(x, y, z * -1))
-        mutated.append(Point3D(x, y * -1, z))
-        mutated.append(Point3D(x, y * -1, z * -1))
-        mutated.append(Point3D(x * -1, y * -1, z))
-        mutated.append(Point3D(x * -1, y * -1, z * -1))
-        mutated.append(Point3D(x * -1, y, z))
-        mutated.append(Point3D(x * -1, y, z * -1))
+        mutated.append(Point3D(x, y, -z))
+        mutated.append(Point3D(x, -y, z))
+        mutated.append(Point3D(x, -y, -z))
+        mutated.append(Point3D(-x, -y, z))
+        mutated.append(Point3D(-x, -y, -z))
+        mutated.append(Point3D(-x, y, z))
+        mutated.append(Point3D(-x, y, -z))
         return mutated
 
     def __str__(self):

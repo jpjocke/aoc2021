@@ -1,6 +1,6 @@
+from file_reader import FileReader
 from src.day19.beacon_map import BeaconMap
 from src.day19.scanner_parser import parse_scanners
-from file_reader import FileReader
 
 fr = FileReader()
 data = fr.read_as_str_lines("../../data/day19_in.txt")
@@ -10,5 +10,5 @@ count = beacon_map.calculate_map()
 
 # too high: 419
 print('problem 1:  ' + str(count))
-
-# difficulty ?
+print('problem 2: ' + str(beacon_map.longest_manhattan()))
+# difficulty 6

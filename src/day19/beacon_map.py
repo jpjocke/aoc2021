@@ -16,66 +16,27 @@ class BeaconMap:
 
     def calculate_map(self) -> int:
         i = -1
-        fail_max = 40
-        fail = 0
-        # last_mapped = 0
+        iterations = 0
         while True:
-            mapped = self.__mapped_num()
-            # if mapped == last_mapped:
-            #    print('no more found exiting')
-            #    break
-            if fail >= fail_max:
-                break
             i += 1
             if i >= len(self.scanners):
                 i = 0
-                fail += 1
+                iterations += 1
+                mapped = self.__mapped_num()
                 print('***')
-                print('*** failed: ' + str(fail))
+                print('*** iterations: ' + str(iterations))
                 print('*** mapped: ' + str(mapped) + '/' + str(len(self.scanners)))
                 print('***')
                 if mapped == len(self.scanners):
                     print('*** All found ***')
                     break
-                # last_mapped = mapped
             if self.scanners[i].mapped:
-                # print(self.scanners[i])
                 continue
             self.test_find_diff2(self.scanners[i])
         return len(self.beacons)
 
-    def test_find_diff(self, scanner: Scanner) -> bool:
-        print('test: ' + scanner.__str__())
-        for scanner_in in self.scanners:
-            if not scanner_in.mapped:
-                continue
-            if scanner_in.id in scanner.no_correlation:
-                # print('no cor: ' + str(scanner_in.id))
-                continue
-            for mutated_list in scanner.b_permutations:
-                for mutated in mutated_list:
-                    relative = []
-                    for b_beacon in scanner_in.b_correct:
-                        relative.append(b_beacon.add(scanner_in.pos))
-                    for b_beacon in relative:
-                        diff = b_beacon.diff(mutated)
-                        diff_list = self.__copy_beacons_with_diff(mutated_list, diff)
-                        if self.test_diff_list(diff_list):
-                            absolute_pos_list = []
-                            for b in diff_list:
-                                absolute_pos_list.append(b.add(scanner_in.pos))
-                            self.beacons.update(absolute_pos_list)
-                            scanner.mapped = True
-                            scanner.b_correct = mutated_list
-                            scanner.pos = diff.add(scanner_in.pos)
-                            print('mapped ' + scanner.__str__() + ' with ' + scanner_in.__str__())
-                            return True
-            # print('no correlation ' + scanner.__str__() + ' -> ' + scanner_in.__str__())
-            scanner.no_correlation.append(scanner_in.id)
-        return False
-
     def test_find_diff2(self, scanner: Scanner) -> bool:
-        print('test2: ' + scanner.__str__())
+        print('testing: ' + scanner.__str__())
         for mutated_list in scanner.b_permutations:
             for mutated in mutated_list:
                 for b_beacon in self.beacons:
@@ -96,10 +57,21 @@ class BeaconMap:
         for b in diff_list:
             if b in self.beacons:
                 hits += 1
-        # print('hits: ' + str(hits))
         if hits >= 12:
             return True
         return False
+
+    def longest_manhattan(self) -> int:
+        a = [*map(lambda scanner: scanner.pos, self.scanners)]
+        b = [*map(lambda scanner: scanner.pos, self.scanners)]
+        longest = 0
+        for x in a:
+            for y in b:
+                # print(x.__str__() + ' : ' + y.__str__())
+                distance = x.manhattan(y)
+                if distance > longest:
+                    longest = distance
+        return longest
 
     def __mapped_num(self) -> int:
         total = 0

@@ -2,6 +2,7 @@ import unittest
 
 from binary import Binary
 from file_reader import FileReader
+from point3D import Point3D
 
 
 class TestUtil(unittest.TestCase):
@@ -20,6 +21,12 @@ class TestUtil(unittest.TestCase):
         binary = Binary('10110')
         binary.invert()
         self.assertEqual('01001', binary.value)
+
+    def test_manhattan(self):
+        p1 = Point3D(1105, -1205, 1229)
+        p2 = Point3D(-92, -2380, -20)
+        self.assertEqual(3621, p1.manhattan(p2))
+        self.assertEqual(3621, p2.manhattan(p1))
 
 
 if __name__ == '__main__':

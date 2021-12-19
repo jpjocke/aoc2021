@@ -17,6 +17,7 @@ class TestDayThree(unittest.TestCase):
         count = beacon_map.calculate_map()
 
         self.assertEqual(79, count)
+        self.assertEqual(3621, beacon_map.longest_manhattan())
 
     def test_problem_1a_small(self):
         fr = FileReader()

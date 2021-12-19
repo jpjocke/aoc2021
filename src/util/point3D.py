@@ -17,6 +17,9 @@ class Point3D:
     def add(self, o: "Point3D") -> "Point3D":
         return Point3D(self.x + o.x, self.y + o.y, self.z + o.z)
 
+    def manhattan(self, o: "Point3D") -> int:
+        return abs(self.x - o.x) + abs(self.y - o.y) + abs(self.z - o.z)
+
     def __str__(self):
         return 'x: ' + str(self.x) + ', y: ' + str(self.y) + ', z: ' + str(self.z)
 
