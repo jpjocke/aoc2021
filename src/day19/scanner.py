@@ -17,7 +17,7 @@ class Scanner:
         self.b_raw = []
         self.b_permutations = []
         self.no_correlation = []
-        for i in range(32):
+        for i in range(48):
             self.b_permutations.append([])
         self.mapped = False
 
@@ -30,14 +30,16 @@ class Scanner:
         y = beacon.y
         z = beacon.z
         mutated = self.__mutate_xyz(x, y, z)
-        mutated += self.__mutate_xyz(y, x, z)
         mutated += self.__mutate_xyz(x, z, y)
+        mutated += self.__mutate_xyz(y, x, z)
+        mutated += self.__mutate_xyz(y, z, x)
         mutated += self.__mutate_xyz(z, y, x)
+        mutated += self.__mutate_xyz(z, x, y)
         for i, mut in enumerate(mutated):
             self.b_permutations[i].append(mut)
 
     def __mutate_xyz(self, x: int, y: int, z: int) -> List[Point3D]:
-        # this results in 8 too many...should be 24 instead of 32
+        # this results in 8 too many...should be 24 instead of 48
         mutated = []
         mutated.append(Point3D(x, y, z))
         mutated.append(Point3D(x, y, z * -1))
