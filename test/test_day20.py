@@ -10,18 +10,25 @@ class TestDayThree(unittest.TestCase):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day20_test_in.txt")
         image = parse_image(data)
-        print(image)
-        print('---')
         image.enhance()
-        print(image)
         image.enhance()
-        print(image)
         self.assertEqual(35, image.count())
+
+    def test_problem_1a(self):
+        fr = FileReader()
+        data = fr.read_as_str_lines("../data/day20a_test_in.txt")
+        image = parse_image(data)
+        image.enhance()
+        image.enhance()
+        self.assertEqual(5326, image.count())
 
     def test_problem_2(self):
         fr = FileReader()
         data = fr.read_as_str_lines("../data/day20_test_in.txt")
-        self.assertEqual(1, 1)
+        image = parse_image(data)
+        for i in range(50):
+            image.enhance()
+        self.assertEqual(3351, image.count())
 
 
 if __name__ == '__main__':
