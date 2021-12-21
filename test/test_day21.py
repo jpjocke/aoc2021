@@ -1,6 +1,7 @@
 import unittest
 
 from src.day21.board import Board
+from src.day21.part_two import PartTwo
 from src.day21.player import Player
 
 
@@ -14,7 +15,8 @@ class TestDayThree(unittest.TestCase):
         self.assertEqual(739785, score)
 
     def test_problem_2(self):
-        self.assertEqual(1, 1)
+        part2 = PartTwo(4, 8, 21)
+        self.assertEqual(444356092776315, part2.calculate())
 
 
 if __name__ == '__main__':

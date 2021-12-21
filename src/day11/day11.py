@@ -23,4 +23,4 @@ while not synced:
 # 132 too low
 # 133 too low
 print('problem 2: ' + str(sims))
-# difficulty ?
+# difficulty 3
