@@ -25,7 +25,7 @@ Running Python this year.
 19 ⭐⭐⭐⭐⭐⭐ (3D orientation)  
 20 ⭐⭐⭐  
 21 ⭐⭐⭐⭐ (DFS, memoize)  
-22  
+22  ⭐⭐⭐⭐⭐⭐⭐⭐ (3D unions, diffs. Shouldnt be to hard but the edges are weird)  
 23  
 24  
 25
