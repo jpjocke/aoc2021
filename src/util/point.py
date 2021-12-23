@@ -12,8 +12,20 @@ class Point:
     def multiply(self):
         return self.x * self.y
 
+    def distance(self, other: "Point") -> int:
+        total = 0
+        if self.x > other.x:
+            total += (self.x - other.x)
+        else:
+            total += (other.x - self.x)
+        if self.y > other.y:
+            total += (self.y - other.y)
+        else:
+            total += (other.y - self.y)
+        return total
+
     def __str__(self):
-        return 'x: ' + str(self.x) + ', y: ' + str(self.y)
+        return 'x:' + str(self.x) + ',y:' + str(self.y)
 
     def __eq__(self, other):
         if not isinstance(other, Point):
@@ -24,4 +36,4 @@ class Point:
     def __hash__(self):
         x = self.x
         y = self.y
-        return floor(((x + y)*(x + y + 1)/2) + y)
+        return floor(((x + y) * (x + y + 1) / 2) + y)
