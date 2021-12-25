@@ -28,5 +28,5 @@ Running Python this year.
 22 ⭐⭐⭐⭐⭐⭐⭐⭐ (3D unions, diffs. Shouldnt be to hard but the edges are weird)  
 23 ⭐⭐⭐⭐⭐⭐ (DFS, Tower of Hanoi)  
 24  
-25
+25 ⭐⭐⭐
 
